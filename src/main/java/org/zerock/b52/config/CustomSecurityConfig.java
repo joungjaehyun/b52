@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.zerock.b52.security.CustomOAuth2UserService;
 import org.zerock.b52.security.handler.CustomAccessDeniedHandler;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class CustomSecurityConfig {
 
     // DB에 쿠키값을 넣기 위해서 datasource 설정
     private final DataSource dataSource;
+    private final CustomOAuth2UserService oAuth2UserService;
 
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
@@ -42,7 +44,9 @@ public class CustomSecurityConfig {
     public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
 
         log.info("filte chain----------------------------------------");
-
+        
+        // 기본 로그인
+        // http.formLogin(Customizer.withDefaults());
         // /login 경로 로그인 페이지 띄우기
         // 람다식 설정이므로 config란 변수로선언
         http.formLogin(config -> {
@@ -71,7 +75,13 @@ public class CustomSecurityConfig {
             config.disable();
         });
 
-      
+        // 카카오 로그인 설정
+        // signin에 a태그로 링크 추가해야됨
+        http.oauth2Login(config ->{
+            config.loginPage("/member/signin");
+            
+
+        });
 
         return http.build();
 

@@ -11,3 +11,16 @@ create table tbl_member_role (
   email varchar(100) not null,
   rolename varchar(50) not null
 );
+
+## 더미 데이터 넣기
+insert into tbl_memeber (email, mpv, mname) values (#(email), #(mpw), #(mname))
+
+insert into tbl_member_role (email, rolename) values(#(email), #(rolename))
+
+
+select * from tbl_memeber tm ;
+select * from tbl_member_role tmr ;
+
+
+## join
+select * from tbl_memeber tm inner join tbl_member_role tmr on tmr.email = tm.email where tm.email = "test2gmail.com";
