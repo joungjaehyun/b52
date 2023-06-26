@@ -11,4 +11,4 @@ REST키 app키에서 찾을수 있다.
 보안
 pLhkenZPxY6U58XOJi8dKUC8kTRCnFyA 
 
-<a href="/oauth2/authorization/kakao">kakao</a>
+http://localhost:8080/oauth2/authorization/kakao
