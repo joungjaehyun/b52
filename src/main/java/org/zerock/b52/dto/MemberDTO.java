@@ -17,6 +17,9 @@ import lombok.Data;
 public class MemberDTO extends User implements OAuth2User{
 
     private String mname;
+    // social login 시 email을 못잡음
+    private String email;
+    private String pw;
 
     public MemberDTO(String email,
       String mpw,
@@ -28,6 +31,8 @@ public class MemberDTO extends User implements OAuth2User{
          .collect(Collectors.toList())
         );
         this.mname = mname;
+        this.email = email;
+        this.pw = mpw;
     }
 
     @Override
@@ -41,7 +46,7 @@ public class MemberDTO extends User implements OAuth2User{
     @Override
     public String getName() {
 
-      return this.getUsername();
+      return this.email;
     }
 
    
