@@ -32,7 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         log.info("====================================");
 
         MemberReadDTO readDTO = memberMapper.selectOne(username);
-
+        log.info(readDTO);
         // 실제로 DB에들어간 데이터 쓸예정
         //    MemberDTO memberDTO = new MemberDTO(
         //         username,

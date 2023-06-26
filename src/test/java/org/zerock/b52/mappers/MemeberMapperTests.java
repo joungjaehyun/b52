@@ -33,15 +33,15 @@ public class MemeberMapperTests {
     @Test
     public void testInsert(){
 
-        String email = "test2@gmail.com";
+        String email = "test4@gmail.com";
         String mpw = passwordEncoder.encode("1111");
         String mname = "사용자테스트";
 
         String rolename = "ADMIN";
         
         memberMapper.insertMember(email, mpw, mname);
-        memberMapper.insertMemeberRole(email, rolename);
-        // memberMapper.insertMemeberRole(email, "USER");
+        //memberMapper.insertMemeberRole(email, rolename);
+         memberMapper.insertMemeberRole(email, "USER3");
 
     }
 
