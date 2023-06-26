@@ -51,24 +51,21 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         // DB에 해당 이메일 사용자가 있다면
         MemberDTO memberDTO = null;
         MemberReadDTO readDTO = mapper.selectOne(email);
-        if (readDTO == null) {
-            memberDTO = new MemberDTO(email,
-                    "",
-                    "카카오사용자",
-                    List.of("USER"));
+        if (readDTO != null) {
 
-
-        } 
-         // 아니라면
-        else {
             memberDTO = new MemberDTO(readDTO.getEmail(),
                     readDTO.getMpw(),
                     readDTO.getMname(),
                     readDTO.getRolenames());
 
         }
+        // 아니라면
+        memberDTO = new MemberDTO(email,
+                "",
+                "카카오사용자",
+                List.of("USER"));
+
         return memberDTO;
-       
 
         // 화면에서 사용자의 로그인한 정보를 찍는다 -> 타입이 달라지면 화면에서 처리할때 복잡해지므로
         // MemberDTO로 통일시켜주는것
