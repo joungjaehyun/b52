@@ -25,7 +25,7 @@ public class MemberController {
     // ROLE_은 빼고 써야된다 
     // 인증이 안되있다면 => loginPage로
     // 인가가 안되있다면 => 403 forbidden
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @GetMapping("/mypage")
     public void mypage(){
         log.info("mypage----------");
